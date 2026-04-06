@@ -3,6 +3,11 @@ import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import userRoutes from "./routes/userRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
+import cookieParser from "cookie-parser";
+import cors from "cors";
+
+
 
 
 import automationRoutes from "./routes/automationRoutes.js";
@@ -11,7 +16,11 @@ import automationRoutes from "./routes/automationRoutes.js";
 dotenv.config();
 
 const app = express();
-
+// Middleware
+app.use(cors({
+  origin: "http://localhost:3000",
+  credentials: true,
+}));
 // Middleware
 app.use(express.json());
 
@@ -26,6 +35,7 @@ app.get("/", (req, res) => {
 app.use("/api/automation", automationRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/automation", automationRoutes);
+app.use("/api/auth", authRoutes);
 
 // Start Server
 const PORT = process.env.PORT || 5000;

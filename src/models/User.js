@@ -5,6 +5,8 @@ const userSchema = new mongoose.Schema({
   name: String,
   email: String,
   phone: String,
+
+  password: String, // ✅ NEW
   skills: [String],
   resume: String,
 
@@ -13,6 +15,9 @@ const userSchema = new mongoose.Schema({
   linkedinPassword: String,
   naukriEmail: String,
   naukriPassword: String,
+   // 🔐 OTP for forgot password
+  otp: String,
+  otpExpiry: Date,
 
 }, { timestamps: true });
 
